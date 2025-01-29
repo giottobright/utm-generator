@@ -85,7 +85,7 @@ function UTMGenerator() {
   const generateUrl = () => {
     const baseUrl = urlType === 'custom' 
       ? customUrl 
-      : `https://b.mtsbank.ru/redirect/marketplace?productId=${products[selectedProduct]}`;
+      : `https://b.mtsbank.ru/redirect/marketplace?productId=${products[selectedProduct]}/`;
 
     const campaignValue = urlType === 'custom' 
       ? (campaignType === 'custom' ? customCampaign : products[selectedProduct])
