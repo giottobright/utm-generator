@@ -83,7 +83,7 @@ function UTMGenerator() {
   };
 
   const generateUrl = () => {
-    const baseUrl = urlType === 'custom' 
+    let baseUrl = urlType === 'custom' 
       ? customUrl 
       : `https://b.mtsbank.ru/redirect/marketplace?productId=${products[selectedProduct]}/`;
   
@@ -99,9 +99,11 @@ function UTMGenerator() {
       utm_content: utmContent
     });
   
-    let separator = baseUrl.includes('?') && !baseUrl.endsWith('?') ? '&' : '';
-    setGeneratedUrl(`${baseUrl}${separator}${utmParams.toString()}`);
+
+  
+    setGeneratedUrl(`${baseUrl}${utmParams.toString()}`);
   };
+  
   
 
   const copyToClipboard = () => {
