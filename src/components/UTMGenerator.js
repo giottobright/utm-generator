@@ -86,11 +86,11 @@ function UTMGenerator() {
     const baseUrl = urlType === 'custom' 
       ? customUrl 
       : `https://b.mtsbank.ru/redirect/marketplace?productId=${products[selectedProduct]}/`;
-
+  
     const campaignValue = urlType === 'custom' 
       ? (campaignType === 'custom' ? customCampaign : products[selectedProduct])
       : products[selectedProduct];
-
+  
     const utmParams = new URLSearchParams({
       utm_source: 'cvm',
       utm_medium: `${selectedChannel}_${selectedSource}`,
@@ -98,9 +98,11 @@ function UTMGenerator() {
       utm_term: '1',
       utm_content: utmContent
     });
-
-    setGeneratedUrl(`${baseUrl}${baseUrl.includes('?') ? '&' : '?'}${utmParams.toString()}`);
+  
+    let separator = baseUrl.includes('?') && !baseUrl.endsWith('?') ? '&' : '';
+    setGeneratedUrl(`${baseUrl}${separator}${utmParams.toString()}`);
   };
+  
 
   const copyToClipboard = () => {
     navigator.clipboard.writeText(generatedUrl);
