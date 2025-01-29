@@ -99,10 +99,12 @@ function UTMGenerator() {
       utm_content: utmContent
     });
   
-
+    // Убираем возможные двойные слэши перед `?`
+    baseUrl = baseUrl.replace(/\/+$/, ''); 
   
-    setGeneratedUrl(`${baseUrl}${utmParams.toString()}`);
+    setGeneratedUrl(`${baseUrl}/?${utmParams.toString()}`);
   };
+  
   
   
 
