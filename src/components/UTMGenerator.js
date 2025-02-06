@@ -86,7 +86,7 @@ function UTMGenerator() {
     let baseUrl = urlType === 'custom' 
       ? customUrl 
       : `https://b.mtsbank.ru/redirect/marketplace?productId=${products[selectedProduct]}`;
-    
+  
     const campaignValue = urlType === 'custom' 
       ? (campaignType === 'custom' ? customCampaign : products[selectedProduct])
       : products[selectedProduct];
@@ -99,8 +99,12 @@ function UTMGenerator() {
       utm_content: utmContent
     });
   
-    setGeneratedUrl(`${baseUrl}&${utmParams.toString()}`);
+    // Проверяем, есть ли уже "?" в URL
+    const separator = baseUrl.includes('?') ? '&' : '?';
+    
+    setGeneratedUrl(`${baseUrl}${separator}${utmParams.toString()}`);
   };
+  
   
   
   
